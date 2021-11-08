@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import { View, Text } from 'react-native'
-import { DetailScreenProps } from '../../interface'
+import { DetailScreenProps } from '../../types'
 
 const Page: FC<DetailScreenProps> = ({ route }) => {
   console.log(route.params?.id)

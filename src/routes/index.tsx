@@ -23,7 +23,7 @@ const config = {
 }
 
 const linking = {
-  prefixes: ['localhost:9000'],
+  prefixes: [],
   config
 }
 
