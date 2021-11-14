@@ -1,32 +1,36 @@
 import React, { FC } from 'react'
-import { Text, View, Image } from 'react-native'
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import { SettingScreenProps, TabScreenProps } from '../../types'
+import { BottomTabNavigationOptions, createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import { ParamListBase, RouteProp } from '@react-navigation/core'
+import { TabScreenProps } from '../../types'
+import HomeScene from '../../pages/home'
+import NovelScene from '../../pages/novel'
+import MovieScene from '../../pages/movie'
+import MusicScene from '../../pages/music'
+import MineScene from '../../pages/mine'
 
-function HomeScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Home!</Text>
-    </View>
-  )
-}
 
-function SettingsScreen({ navigation }: SettingScreenProps) {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text onPress={() => navigation.navigate('Detail', { id: '1', name: '3333' })}>Settings!</Text>
-      <Image style={{ width: 300, height: 300 }} source={require('../../assets/6-11.png')} />
-    </View>
-  )
-}
+const Tab = createBottomTabNavigator()
 
-const Tab = createBottomTabNavigator();
+const screenOptions: BottomTabNavigationOptions | ((props: {
+  route: RouteProp<ParamListBase, string>;
+  navigation: any;
+}) => BottomTabNavigationOptions) | undefined = ({ route }) => ({
+  // tabBarIcon: ({ focused, color, size }) => {
+    
+  // },
+  headerShown: false,
+  tabBarActiveTintColor: 'tomato',
+  tabBarInactiveTintColor: 'gray',
+})
 
 const MainStack: FC<TabScreenProps> = () => {
   return (
-    <Tab.Navigator backBehavior='none' screenOptions={{ headerShown: false }}>
-      <Tab.Screen name='Home' component={HomeScreen} />
-      <Tab.Screen name='Settings' component={SettingsScreen} />
+    <Tab.Navigator backBehavior='none' screenOptions={screenOptions}>
+      <Tab.Screen name='Home' component={HomeScene} />
+      <Tab.Screen name='Novel' component={NovelScene} />
+      <Tab.Screen name='Movie' component={MovieScene} />
+      <Tab.Screen name='Music' component={MusicScene} />
+      <Tab.Screen name='Mine' component={MineScene} />
     </Tab.Navigator>
   )
 }

@@ -4,7 +4,10 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack'
 
 type TabParamList = {
   Home: undefined,
-  Setting: undefined
+  Novel: undefined,
+  Movie: undefined,
+  Music: undefined,
+  Mine: undefined
 }
 
 type StackParamList = {
@@ -17,8 +20,8 @@ type TabScreenProps = CompositeScreenProps<
   NativeStackScreenProps<StackParamList>
 >
 
-type SettingScreenProps = CompositeScreenProps<
-  BottomTabScreenProps<TabParamList, 'Setting'>,
+type MineScreenProps = CompositeScreenProps<
+  BottomTabScreenProps<TabParamList, 'Mine'>,
   NativeStackScreenProps<StackParamList>
 >
 
@@ -27,5 +30,5 @@ type DetailScreenProps = NativeStackScreenProps<StackParamList, 'Detail'>
 export type {
   TabScreenProps,
   DetailScreenProps,
-  SettingScreenProps
+  MineScreenProps
 }

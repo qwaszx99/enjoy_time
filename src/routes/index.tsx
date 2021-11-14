@@ -14,7 +14,10 @@ const config = {
     Main: {
       screens: {
         Home: 'main/home',
-        Settings: 'main/settings'
+        Novel: 'main/novel',
+        Movie: 'main/movie',
+        Music: 'main/music',
+        Mine: 'main/mine'
       }
     },
     Detail: 'detail/:id/:name',

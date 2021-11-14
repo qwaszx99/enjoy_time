@@ -1,5 +1,6 @@
 const path = require('path');
 const HTMLWebpackPlugin = require('html-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const appDirectory = path.resolve(__dirname, './')
 
 // This is needed for webpack to compile JavaScript.
@@ -40,21 +41,23 @@ const imageLoaderConfiguration = {
   }
 };
 
-module.exports = {
-  mode: 'development',
+console.log(process.env.API_ENV)
+
+module.exports = (_, argv) => ({
+  mode: 'production',
 
   // Path to the entry file, change it according to the path you have
   entry: path.join(appDirectory, 'index.web.js'),
 
   // Path for the output files
   output: {
-    path: path.join(appDirectory, 'dist'),
+    path: path.join(appDirectory, 'build'),
     filename: '[name].[contenthash:8].js', // 打包后的文件名称
-    publicPath: '/'
+    publicPath: argv.mode === 'development' ? '/' : './'
   },
 
   // Enable source map support
-  devtool: 'source-map',
+  devtool: argv.mode === 'development' ? 'source-map' : undefined,
 
   // Loaders and resolver config
   module: {
@@ -92,6 +95,19 @@ module.exports = {
   plugins: [
     new HTMLWebpackPlugin(
       { template: path.join(appDirectory, 'public/index.html') }
-    )
-  ]
-}
+    ),
+    new CleanWebpackPlugin()
+  ],
+  /*
+    1. 可以将node_modules中代码单独打包一个chunk最终输出
+    2. 自动分析多入口chunk中，有没有公共的文件。如果有会打包成单独一个chunk
+  */
+  optimization: {
+    splitChunks: {
+      chunks: 'all'
+    }
+  },
+  //   WARNING in asset size limit: The following asset(s) exceed the recommended size limit (244 KiB).
+  // This can impact web performance.
+  performance: { hints: false }
+})

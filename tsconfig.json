@@ -13,7 +13,10 @@
     "strict": true,
     "target": "esnext"
   },
-  "include": ["src"],
+  "include": [
+    "src",
+    "images.d.ts"
+  ],
   "exclude": [
     "node_modules",
     "babel.config.js",
