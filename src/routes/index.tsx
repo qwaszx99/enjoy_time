@@ -20,9 +20,8 @@ const config = {
         Mine: 'main/mine'
       }
     },
-    Detail: 'detail/:id/:name',
-    NotFound: '*'
-  },
+    Detail: 'detail/:id/:name'
+  }
 }
 
 const linking = {

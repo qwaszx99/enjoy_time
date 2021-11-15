@@ -53,7 +53,7 @@ module.exports = (_, argv) => ({
   output: {
     path: path.join(appDirectory, 'build'),
     filename: '[name].[contenthash:8].js', // 打包后的文件名称
-    publicPath: argv.mode === 'development' ? '/' : './'
+    publicPath: '/'
   },
 
   // Enable source map support
@@ -68,6 +68,11 @@ module.exports = (_, argv) => ({
         test: /\.tsx?$/,
         use: ['babel-loader', 'ts-loader'],
         include: path.resolve(appDirectory, 'src')
+      },
+      {
+        test: /\.ttf$/,
+        loader: 'url-loader', // or directly file-loader
+        include: path.resolve(__dirname, 'node_modules/react-native-vector-icons'),
       },
     ]
   },
