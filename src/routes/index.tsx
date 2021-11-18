@@ -36,9 +36,9 @@ const Router = () => {
 
   return (
     <NavigationContainer linking={linking} ref={navigationRef} fallback={<Text>Loading...</Text>}>
-      <Stack.Navigator>
-        <Stack.Screen name='Main' component={MainStack} options={{ headerShown: false, animation: 'slide_from_left', gestureEnabled: true }} />
-        <Stack.Screen name='Detail' component={DetailPage} options={{ animation: 'slide_from_left', gestureEnabled: true }} />
+      <Stack.Navigator screenOptions={{ animation: 'slide_from_bottom', gestureEnabled: true}}>
+        <Stack.Screen name='Main' component={MainStack} options={{ headerShown: false }} />
+        <Stack.Screen name='Detail' component={DetailPage} />
       </Stack.Navigator>
     </NavigationContainer>
   )
