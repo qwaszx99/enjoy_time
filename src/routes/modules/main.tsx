@@ -1,5 +1,4 @@
 import React, { FC } from 'react'
-import { Text } from 'react-native'
 import { BottomTabNavigationOptions, createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { ParamListBase, RouteProp } from '@react-navigation/core'
 import { TabScreenProps } from '../../types'
@@ -12,26 +11,34 @@ import Icon from '../../assets/icomoon'
 
 const Tab = createBottomTabNavigator()
 
-const TabConfig = {
-  'Home': { icon: 'shouye', label: '首页' },
-  'Novel': { icon: 'xiaoshuo', label: '小说' },
-  'Movie': { icon: 'shipin', label: '影视' },
-  'Music': { icon: 'yinle', label: '音乐' },
-  'Mine': { icon: 'profile', label: '我的' }
-}
-
-type TabRouteName = 'Home' | 'Novel' | 'Movie' | 'Music' | 'Mine'
-
 const screenOptions: BottomTabNavigationOptions | ((props: {
   route: RouteProp<ParamListBase, string>;
   navigation: any;
 }) => BottomTabNavigationOptions) | undefined = ({ route }) => ({
   tabBarIcon: ({ color }) => {
-    return <Icon name={TabConfig[route.name as TabRouteName].icon} color={color} size={22} />
+    let iconName = ''
+    switch (route.name) {
+      case 'Home':
+        iconName = 'shouye'
+        break;
+      case 'Novel':
+        iconName = 'xiaoshuo'
+        break
+      case 'Movie':
+        iconName = 'shipin'
+        break
+      case 'Music':
+        iconName = 'yinle'
+        break
+      case 'Mine':
+        iconName = 'profile'
+        break
+      default:
+        break;
+    }
+    return <Icon name={iconName} color={color} size={22} />
   },
-  tabBarLabel: ({ color }) => {
-    return <Text style={{ color }}>{TabConfig[route.name as TabRouteName].label}</Text>
-  },
+  tabBarIconStyle: { fontSize: 40 },
   headerShown: false,
   tabBarLabelPosition: 'below-icon',
   tabBarActiveTintColor: 'tomato',
@@ -41,11 +48,11 @@ const screenOptions: BottomTabNavigationOptions | ((props: {
 const MainStack: FC<TabScreenProps> = () => {
   return (
     <Tab.Navigator backBehavior='none' screenOptions={screenOptions}>
-      <Tab.Screen name='Home' component={HomeScene} />
-      <Tab.Screen name='Novel' component={NovelScene} />
-      <Tab.Screen name='Movie' component={MovieScene} />
-      <Tab.Screen name='Music' component={MusicScene} />
-      <Tab.Screen name='Mine' component={MineScene} />
+      <Tab.Screen name='Home' component={HomeScene} options={{ tabBarLabel: '首页' }} />
+      <Tab.Screen name='Novel' component={NovelScene} options={{ tabBarLabel: '小说' }} />
+      <Tab.Screen name='Movie' component={MovieScene} options={{ tabBarLabel: '影视' }} />
+      <Tab.Screen name='Music' component={MusicScene} options={{ tabBarLabel: '音乐' }} />
+      <Tab.Screen name='Mine' component={MineScene} options={{ tabBarLabel: '我的' }} />
     </Tab.Navigator>
   )
 }
