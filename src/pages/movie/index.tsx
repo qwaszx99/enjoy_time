@@ -5,8 +5,10 @@
  */
 
 import React from 'react'
-import { Text } from 'react-native'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
+import TabView from './tab-view'
+import { Colors } from '../../common/theme'
+import { setUnit } from '../../utils'
 
 const Tab = createMaterialTopTabNavigator()
 
@@ -15,45 +17,50 @@ function MovieScene() {
     <Tab.Navigator
       initialRouteName='hot'
       screenOptions={{
-        swipeEnabled: false,
-        tabBarActiveTintColor: 'tomato',
+        swipeEnabled: true,
+        tabBarActiveTintColor: Colors.primary,
         tabBarInactiveTintColor: '#555',
-        tabBarIndicatorStyle: { backgroundColor: 'tomato' },
+        tabBarIndicatorStyle: { backgroundColor: Colors.primary },
         tabBarLabelStyle: { fontSize: 15 },
         tabBarScrollEnabled: true,
+        tabBarStyle: {
+          elevation: 0,
+          borderBottomColor: Colors.border,
+          borderBottomWidth: 1,
+        },
         tabBarItemStyle: {
-          width: 100
+          width: setUnit(160)
         }
       }}
     >
       <Tab.Screen
         name='hot'
-        component={() => <Text>热播</Text>}
+        component={TabView}
         options={{ tabBarLabel: '热播' }}
       />
       <Tab.Screen
         name='guoju'
-        component={() => <Text>国剧</Text>}
+        component={TabView}
         options={{ tabBarLabel: '国剧' }}
       />
       <Tab.Screen
         name='gangtai'
-        component={() => <Text>港台</Text>}
+        component={TabView}
         options={{ tabBarLabel: '港台' }}
       />
       <Tab.Screen
         name='rihan'
-        component={() => <Text>日韩</Text>}
+        component={TabView}
         options={{ tabBarLabel: '日韩' }}
       />
       <Tab.Screen
         name='oumei'
-        component={() => <Text>欧美</Text>}
+        component={TabView}
         options={{ tabBarLabel: '欧美' }}
       />
       <Tab.Screen
         name='other'
-        component={() => <Text>其他</Text>}
+        component={TabView}
         options={{ tabBarLabel: '其他' }}
       />
     </Tab.Navigator>

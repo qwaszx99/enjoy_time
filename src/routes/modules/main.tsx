@@ -15,7 +15,7 @@ const screenOptions: BottomTabNavigationOptions | ((props: {
   route: RouteProp<ParamListBase, string>;
   navigation: any;
 }) => BottomTabNavigationOptions) | undefined = ({ route }) => ({
-  tabBarIcon: ({ color }) => {
+  tabBarIcon: ({ color, size }) => {
     let iconName = ''
     switch (route.name) {
       case 'Home':
@@ -34,15 +34,15 @@ const screenOptions: BottomTabNavigationOptions | ((props: {
         iconName = 'profile'
         break
       default:
-        break;
+        break
     }
-    return <Icon name={iconName} color={color} size={22} />
+    return <Icon name={iconName} color={color} size={size} />
   },
-  tabBarIconStyle: { fontSize: 40 },
+  tabBarIconStyle: { fontSize: 24 },
   headerShown: false,
   tabBarLabelPosition: 'below-icon',
   tabBarActiveTintColor: 'tomato',
-  tabBarInactiveTintColor: 'gray',
+  tabBarInactiveTintColor: 'gray'
 })
 
 const MainStack: FC<TabScreenProps> = () => {
