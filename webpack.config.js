@@ -1,6 +1,6 @@
 const path = require('path');
 const HTMLWebpackPlugin = require('html-webpack-plugin')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const appDirectory = path.resolve(__dirname, './')
 
 // This is needed for webpack to compile JavaScript.
@@ -41,8 +41,6 @@ const imageLoaderConfiguration = {
   }
 };
 
-console.log(process.env.API_ENV)
-
 module.exports = (_, argv) => ({
   mode: 'production',
 
@@ -74,7 +72,7 @@ module.exports = (_, argv) => ({
         loader: 'url-loader', // or directly file-loader
         // include: path.resolve(__dirname, 'node_modules/react-native-vector-icons'),
         include: path.resolve(__dirname, './src/assets/fonts/iconmoon.ttf'),
-      },
+      }
     ]
   },
   resolve: {
@@ -95,7 +93,15 @@ module.exports = (_, argv) => ({
     },
     historyApiFallback: true,
     compress: true,
-    port: 9000
+    port: 9000,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3001',
+        // pathRewrite: {'^/api': ''},
+        changeOrigin: true,
+        secure: false
+      }
+    }
   },
   /* webpack 插件配置 html-webpack-plugin */
   plugins: [
@@ -110,8 +116,27 @@ module.exports = (_, argv) => ({
   */
   optimization: {
     splitChunks: {
-      chunks: 'all'
-    }
+      chunks: 'all',
+      // cacheGroups: {
+      //   vendor: {
+      //     test: /[\\/]node_modules[\\/]/,
+      //     name: 'vendors',
+      //     chunks: 'initial',
+      //   },
+      //   react: {
+      //      name: 'chunk-react', // split react into a single package
+      //      priority: 20, // the weight needs to be larger than libs and app or it will be packaged into libs or app
+      //      test: /[\\/]node_modules[\\/]_?react(.*)/
+      //    },
+      //    commons: {
+      //      name: 'chunk-commons',
+      //      test: path.join(__dirname,'src/components'),
+      //      minChunks: 3, 
+      //      priority: 5,
+      //      reuseExistingChunk: true
+      //    }
+      // },
+    },
   },
   //   WARNING in asset size limit: The following asset(s) exceed the recommended size limit (244 KiB).
   // This can impact web performance.

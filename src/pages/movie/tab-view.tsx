@@ -1,11 +1,12 @@
 import React, { FC, memo } from 'react'
-import { Text, View } from 'react-native'
+import { Alert, Text, View } from 'react-native'
+import { MovieTypeItem } from 'types/movie'
 import { styles } from './style'
 
-const TabView:FC = memo(() => {
+const TabView:FC<MovieTypeItem> = memo(({ title, link }) => {
   return(
     <View style={styles.container}>
-      <Text>电影</Text>
+      <Text>{title}</Text>
     </View>
   )
 })

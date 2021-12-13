@@ -4,15 +4,34 @@
  * @date 2021/11/14
  */
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
 import TabView from './tab-view'
-import { Colors } from '../../common/theme'
-import { setUnit } from '../../utils'
+import { Colors } from 'common/theme'
+import { setUnit } from 'utils'
+import { getMovieCategories } from 'apis/movie'
+import { MovieTypeItem } from 'types/movie'
+import PageLoading from 'components/page-loading'
 
 const Tab = createMaterialTopTabNavigator()
 
-function MovieScene() {
+const MovieScene = () => {
+  const [types, setTypes] = useState<MovieTypeItem[]>([])
+  useEffect(() => {
+    fecthData()
+  }, [])
+
+  const fecthData = async () => {
+    try {
+      const res = await getMovieCategories()
+      setTypes(res)
+    } catch (error) {
+
+    }
+  }
+
+  if (!types.length) return <PageLoading title='页面加载中'/>
+
   return (
     <Tab.Navigator
       initialRouteName='hot'
@@ -29,42 +48,24 @@ function MovieScene() {
           borderBottomWidth: 1,
         },
         tabBarItemStyle: {
-          width: setUnit(160)
+          width: setUnit(200)
         }
       }}
     >
-      <Tab.Screen
-        name='hot'
-        component={TabView}
-        options={{ tabBarLabel: '热播' }}
-      />
-      <Tab.Screen
-        name='guoju'
-        component={TabView}
-        options={{ tabBarLabel: '国剧' }}
-      />
-      <Tab.Screen
-        name='gangtai'
-        component={TabView}
-        options={{ tabBarLabel: '港台' }}
-      />
-      <Tab.Screen
-        name='rihan'
-        component={TabView}
-        options={{ tabBarLabel: '日韩' }}
-      />
-      <Tab.Screen
-        name='oumei'
-        component={TabView}
-        options={{ tabBarLabel: '欧美' }}
-      />
-      <Tab.Screen
-        name='other'
-        component={TabView}
-        options={{ tabBarLabel: '其他' }}
-      />
+      {
+        types.map(v => (
+          <Tab.Screen
+            key={v.title}
+            name={v.title}
+            children={() => <TabView {...v} />}
+            options={{ tabBarLabel: v.title }}
+          />
+        ))
+      }
     </Tab.Navigator>
   )
 }
 
 export default MovieScene
+
+

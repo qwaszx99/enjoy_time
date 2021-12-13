@@ -1,12 +1,12 @@
 import React, { FC } from 'react'
 import { BottomTabNavigationOptions, createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { ParamListBase, RouteProp } from '@react-navigation/core'
-import { TabScreenProps } from '../../types'
-import HomeScene from '../../pages/home'
-import NovelScene from '../../pages/novel'
-import MovieScene from '../../pages/movie'
-import MusicScene from '../../pages/music'
-import MineScene from '../../pages/mine'
+import { TabScreenProps } from 'types'
+import HomeScene from '@pages/home'
+import NovelScene from '@pages/novel'
+import MovieScene from '@pages/movie'
+import MusicScene from '@pages/music'
+import MineScene from '@pages/mine'
 import Icon from '../../assets/icomoon'
 
 const Tab = createBottomTabNavigator()

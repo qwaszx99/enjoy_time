@@ -27,8 +27,15 @@ type MineScreenProps = CompositeScreenProps<
 
 type DetailScreenProps = NativeStackScreenProps<StackParamList, 'Detail'>
 
+type ResponseProps = {
+  code: number
+  msg: string
+  data: unknown
+}
+
 export type {
   TabScreenProps,
   DetailScreenProps,
-  MineScreenProps
+  MineScreenProps,
+  ResponseProps
 }
