@@ -7,7 +7,7 @@ import NovelScene from '@pages/novel'
 import MovieScene from '@pages/movie'
 import MusicScene from '@pages/music'
 import MineScene from '@pages/mine'
-import Icon from '../../assets/icomoon'
+import Icon from 'assets/icomoon'
 
 const Tab = createBottomTabNavigator()
 

@@ -10,13 +10,13 @@ import TabView from './tab-view'
 import { Colors } from 'common/theme'
 import { setUnit } from 'utils'
 import { getMovieCategories } from 'apis/movie'
-import { MovieTypeItem } from 'types/movie'
+import { MovieMenuItem } from 'types/movie'
 import PageLoading from 'components/page-loading'
 
 const Tab = createMaterialTopTabNavigator()
 
 const MovieScene = () => {
-  const [types, setTypes] = useState<MovieTypeItem[]>([])
+  const [types, setTypes] = useState<MovieMenuItem[]>([])
   useEffect(() => {
     fecthData()
   }, [])

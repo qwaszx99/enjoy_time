@@ -4,22 +4,22 @@ import App from './App'
 import { name as appName } from './app.json'
 
 // Generate required css
-import iconFont from './src/assets/fonts/iconmoon.ttf';
+import iconFont from './src/assets/fonts/iconmoon.ttf'
 const iconFontStyles = `@font-face {
   src: url(${iconFont});
   font-family: iconmoon;
-}`;
+}`
 
 // Create stylesheet
-const style = document.createElement('style');
+const style = document.createElement('style')
 if (style.styleSheet) {
-  style.styleSheet.cssText = iconFontStyles;
+  style.styleSheet.cssText = iconFontStyles
 } else {
-  style.appendChild(document.createTextNode(iconFontStyles));
+  style.appendChild(document.createTextNode(iconFontStyles))
 }
 
 // Inject stylesheet
-document.head.appendChild(style);
+document.head.appendChild(style)
 
 AppRegistry.registerComponent(appName, () => App)
 

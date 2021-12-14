@@ -1,9 +1,9 @@
 import React, { FC, memo } from 'react'
 import { Text, View } from 'react-native'
-import { MovieTypeItem } from 'types/movie'
+import { MovieMenuItem } from 'types/movie'
 import { styles } from './style'
 
-const TabView:FC<MovieTypeItem> = memo(({ title }) => {
+const TabView:FC<MovieMenuItem> = memo(({ title }) => {
   return(
     <View style={styles.container}>
       <Text>{title}</Text>
