@@ -26,11 +26,11 @@ const MovieScene = () => {
       const res = await getMovieCategories()
       setTypes(res)
     } catch (error) {
-
+    
     }
   }
 
-  if (!types.length) return <PageLoading title='页面加载中'/>
+  if (!types.length) return <PageLoading title='页面加载中' />
 
   return (
     <Tab.Navigator
@@ -40,7 +40,7 @@ const MovieScene = () => {
         tabBarActiveTintColor: Colors.primary,
         tabBarInactiveTintColor: '#555',
         tabBarIndicatorStyle: { backgroundColor: Colors.primary },
-        tabBarLabelStyle: { fontSize: 15 },
+        tabBarLabelStyle: { fontSize: setUnit(32) },
         tabBarScrollEnabled: true,
         tabBarStyle: {
           elevation: 0,
@@ -48,8 +48,9 @@ const MovieScene = () => {
           borderBottomWidth: 1,
         },
         tabBarItemStyle: {
-          width: setUnit(200)
-        }
+          width: setUnit(220)
+        },
+        lazy: true
       }}
     >
       {

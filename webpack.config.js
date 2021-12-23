@@ -72,12 +72,22 @@ module.exports = (_, argv) => ({
         loader: 'url-loader', // or directly file-loader
         // include: path.resolve(__dirname, 'node_modules/react-native-vector-icons'),
         include: path.resolve(__dirname, './src/assets/fonts/iconmoon.ttf'),
+      },
+      {
+        test: /(postMock|video).html$/,
+        use: {
+          loader: 'file-loader',
+          options: {
+            name: '[name].[ext]',
+          },
+        },
       }
     ]
   },
   resolve: {
     alias: {
       'react-native$': 'react-native-web',
+      'react-native-webview$': 'react-native-web-webview'
     },
     // If you're working on a multi-platform React Native app, web-specific
     // module implementations should be written in files using the extension

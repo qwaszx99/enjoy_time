@@ -12,7 +12,7 @@ type TabParamList = {
 
 type StackParamList = {
   Main: undefined,
-  Detail: { id: string, name: string } | undefined
+  Detail: { id: string }
 }
 
 type TabScreenProps = CompositeScreenProps<

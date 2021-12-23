@@ -9,10 +9,10 @@ import { Text, View } from 'react-native'
 import { MineScreenProps } from '../../types'
 import { styles } from './style'
 
-const MineScene:FC<MineScreenProps> = ({ navigation }) => {
+const MineScene:FC<MineScreenProps> = () => {
   return (
     <View style={styles.container}>
-      <Text onPress={() => navigation.navigate('Detail', { id: '111', name: 'sheng'})}>我的</Text>
+      <Text>我的</Text>
     </View>
   )
 }
