@@ -1,6 +1,6 @@
 const APP = {
   header: {},
-  baseUrl: 'http://k.luohua60.com/'
+  baseUrl: 'http://192.168.1.102:3001'
 }
 
 export default APP

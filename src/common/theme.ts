@@ -11,8 +11,8 @@ const FontSize = {
   huge: 50,
   large: 32,
   big: 24,
-  normal: 17,
-  middle: 15,
+  normal: 16,
+  middle: 14,
   small: 13,
   tiny: 12,
   mini: 10
