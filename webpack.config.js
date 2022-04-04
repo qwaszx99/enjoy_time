@@ -127,25 +127,26 @@ module.exports = (_, argv) => ({
   optimization: {
     splitChunks: {
       chunks: 'all',
-      // cacheGroups: {
-      //   vendor: {
-      //     test: /[\\/]node_modules[\\/]/,
-      //     name: 'vendors',
-      //     chunks: 'initial',
-      //   },
-      //   react: {
-      //      name: 'chunk-react', // split react into a single package
-      //      priority: 20, // the weight needs to be larger than libs and app or it will be packaged into libs or app
-      //      test: /[\\/]node_modules[\\/]_?react(.*)/
-      //    },
-      //    commons: {
-      //      name: 'chunk-commons',
-      //      test: path.join(__dirname,'src/components'),
-      //      minChunks: 3, 
-      //      priority: 5,
-      //      reuseExistingChunk: true
-      //    }
-      // },
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'initial',
+          priority: 20
+        },
+        react: {
+           name: 'react', // split react into a single package
+           priority: 30, // the weight needs to be larger than libs and app or it will be packaged into libs or app
+           test: /[\\/]node_modules[\\/]_?react(.*)/
+         },
+         commons: {
+           name: 'chunk-commons',
+           test: path.join(__dirname,'src/components'),
+           minChunks: 3, 
+           priority: 5,
+           reuseExistingChunk: true
+         }
+      },
     },
   },
   //   WARNING in asset size limit: The following asset(s) exceed the recommended size limit (244 KiB).

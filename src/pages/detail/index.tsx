@@ -43,7 +43,7 @@ const Page: FC<DetailScreenProps> = ({ route }) => {
         javaScriptEnabled={true}
         injectedJavaScript={injected}
         onMessage={handleMessage}
-        source={{ uri: APP.baseUrl + route.params?.id }}
+        source={{ uri: APP.assetBaseUrl + route.params?.id }}
       />
     </View>
   )

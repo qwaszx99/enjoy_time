@@ -6,9 +6,10 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start",
-    "test": "jest",
+    "jest": "jest",
     "lint": "eslint .",
     "dev": "cross-env API_ENV=dev webpack-dev-server --mode=development",
+    "test": "cross-env API_ENV=test webpack-dev-server --mode=development",
     "build": "cross-env API_ENV=prod webpack --mode=production",
     "build:dev": "cross-env API_ENV=dev webpack --mode=production",
     "build:test": "cross-env API_ENV=test webpack --mode=production"

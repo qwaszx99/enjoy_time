@@ -34,7 +34,7 @@ const TabView: FC<MovieMenuItem> = memo(({ link }) => {
         onPress={() => navigation.navigate('Detail' as never, { id: item.id } as never)}
       >
         <ImageBackground
-          source={{ uri: APP.baseUrl + item.coverUrl }}
+          source={{ uri: APP.assetBaseUrl + item.coverUrl }}
           style={styles.cover}
         >
           <View style={styles.bg}>
