@@ -14,10 +14,19 @@ interface PageLoadingProps {
 }
 
 const PageLoading: FC<PageLoadingProps> = ({ title }) => {
-  return <View style={styles.container}>
-    <ActivityIndicator size='large' color={Colors.primary} />
-    {title ? <Text style={styles.title}>{title}</Text> : null}
-  </View>
+  return (
+    <View style={styles.container}>
+      <ActivityIndicator
+        size='large'
+        color={Colors.primary}
+      />
+      {
+        title
+          ? <Text style={styles.title}>{title}</Text>
+          : null
+      }
+    </View>)
+
 }
 
 export default PageLoading
