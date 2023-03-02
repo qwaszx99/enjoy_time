@@ -2,8 +2,8 @@ import { MovieListItem, MovieMenuItem } from 'types/movie'
 
 export function parseHome(data: string): MovieMenuItem[] {
   const DomParser = require('react-native-html-parser').DOMParser
-  const doc = new DomParser().parseFromString(data.replace(/nav1000/g, 'navtest'), 'text/html')
-  const list = doc.querySelect('.navtest a', true)
+  const doc = new DomParser().parseFromString(data.replace(/menu-item/g, 'menuitem'), 'text/html')
+  const list = doc.querySelect('.menu-item', true)
   const types = []
 
   for (const item of list) {
