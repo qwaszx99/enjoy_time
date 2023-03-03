@@ -11,7 +11,7 @@ import { styles } from './style'
 const HomeScene = () => {
   return (
     <View style={styles.container}>
-      <Text>首页测试一下触发器</Text>
+      <Text>首页13.21测试一下触发器</Text>
     </View>
   )
 }
