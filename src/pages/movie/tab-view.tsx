@@ -1,14 +1,14 @@
 import React, { FC, memo, useEffect, useState } from 'react'
-import { FlatList, ImageBackground, Pressable, Text, View } from 'react-native'
+import { FlatList, Image, Pressable, Text, View } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import { MovieListItem, MovieMenuItem } from 'types/movie'
 import { getMoviesByPage } from 'apis/movie'
-import { APP } from 'config'
+import PageLoading from 'components/page-loading'
+import { MovieScreenNavigationProp } from 'types'
 import { styles } from './style'
 
-
 const TabView: FC<MovieMenuItem> = memo(({ link }) => {
-  const navigation = useNavigation()
+  const navigation = useNavigation<MovieScreenNavigationProp>()
 
   const [movies, setMovies] = useState<MovieListItem[]>([])
 
@@ -27,31 +27,24 @@ const TabView: FC<MovieMenuItem> = memo(({ link }) => {
   }
 
   const _renderItem: FC<{ item: MovieListItem }> = ({ item }) => {
-
     return (
       <Pressable
         style={styles.item}
-        onPress={() => navigation.navigate('Detail' as never, { id: item.id } as never)}
+        onPress={() => navigation.navigate('Detail', { id: item.id, link: item.link })}
       >
-        <ImageBackground
-          source={{ uri: APP.assetBaseUrl + item.coverUrl }}
+        <Image
+          source={{ uri: item.coverUrl }}
           style={styles.cover}
-        >
-          <View style={styles.bg}>
-            <Text style={styles.progress}>{item.progress}</Text>
-          </View>
-        </ImageBackground>
+        />
         <View style={styles.content}>
           <Text style={styles.name} numberOfLines={1}>{item.movieName}</Text>
-          <Text style={styles.star} numberOfLines={1}>主演: {item.stars}</Text>
-          <View style={styles.row}>
-            <Text style={styles.label} numberOfLines={1}>产地: {item.area}</Text>
-            <Text style={styles.label} numberOfLines={1}>年份: {item.year}</Text>
-          </View>
+          <Text style={styles.star} numberOfLines={1}>{item.info}</Text>
         </View>
       </Pressable>
     )
   }
+
+  if (!movies.length) return <PageLoading />
 
   return (
     <View style={styles.container}>

@@ -7,8 +7,6 @@ export type MovieListItem = {
   id: string
   coverUrl: string
   movieName: string
-  stars: string
-  year: string
-  area: string
-  progress: string
+  info: string
+  link: string
 }

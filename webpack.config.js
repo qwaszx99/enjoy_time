@@ -104,13 +104,14 @@ module.exports = (_, argv) => ({
     historyApiFallback: true,
     compress: true,
     port: 9000,
-    proxy: {
-      '/api': {
-        target: 'http://localhost:3001',
-        changeOrigin: true,
-        secure: false
-      }
-    }
+    // proxy: {
+    //   '/api': {
+    //     target: 'http://localhost:3000',
+    //     pathRewrite: {'^/api': ''},
+    //     changeOrigin: true,
+    //     secure: false
+    //   }
+    // }
   },
   /* webpack 插件配置 html-webpack-plugin */
   plugins: [

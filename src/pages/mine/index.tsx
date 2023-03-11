@@ -9,7 +9,8 @@ import { Text, View } from 'react-native'
 import { MineScreenProps } from '../../types'
 import { styles } from './style'
 
-const MineScene:FC<MineScreenProps> = () => {
+const MineScene: FC<MineScreenProps> = ({ navigation }) => {
+
   return (
     <View style={styles.container}>
       <Text>我的</Text>

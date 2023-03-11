@@ -4,34 +4,16 @@
  * @date 2021/11/14
  */
 
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
 import TabView from './tab-view'
 import { Colors } from 'common/theme'
 import { setUnit } from 'utils'
-import { getMovieCategories } from 'apis/movie'
-import { MovieMenuItem } from 'types/movie'
-import PageLoading from 'components/page-loading'
+import { APP } from 'config'
 
 const Tab = createMaterialTopTabNavigator()
 
 const MovieScene = () => {
-  const [types, setTypes] = useState<MovieMenuItem[]>([])
-  useEffect(() => {
-   // fecthData()
-  }, [])
-
-  // const fecthData = async () => {
-  //   try {
-  //     const res = await getMovieCategories()
-  //     setTypes(res)
-  //   } catch (error) {
-    
-  //   }
-  // }
-
-  if (!types.length) return <PageLoading title='页面加载中' />
-
   return (
     <Tab.Navigator
       initialRouteName='hot'
@@ -54,7 +36,7 @@ const MovieScene = () => {
       }}
     >
       {
-        types.map(v => (
+        APP.movieCategories.map(v => (
           <Tab.Screen
             key={v.title}
             name={v.title}

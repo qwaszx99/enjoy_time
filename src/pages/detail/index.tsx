@@ -1,6 +1,6 @@
 import { APP } from 'config'
 import React, { FC, useEffect } from 'react'
-import { Platform, View } from 'react-native'
+import { Platform, Switch, View } from 'react-native'
 import WebView, { WebViewMessageEvent } from 'react-native-webview'
 import { DetailScreenProps } from 'types'
 import Orientation from 'react-native-orientation'
@@ -10,6 +10,10 @@ const injected = `["fullscreenchange", "webkitfullscreenchange", "mozfullscreenc
 
 let orientation: string
 const Page: FC<DetailScreenProps> = ({ route }) => {
+
+  const { link } = route.params
+
+  console.log(link, 'link')
 
   useEffect(() => {
     if (Platform.OS === 'web') return
@@ -43,7 +47,7 @@ const Page: FC<DetailScreenProps> = ({ route }) => {
         javaScriptEnabled={true}
         injectedJavaScript={injected}
         onMessage={handleMessage}
-        source={{ uri: APP.assetBaseUrl + route.params?.id }}
+        source={{ uri: APP.baseUrl + link  }}
       />
     </View>
   )

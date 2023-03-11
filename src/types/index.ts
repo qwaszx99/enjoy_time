@@ -1,6 +1,6 @@
-import { CompositeScreenProps } from '@react-navigation/native'
-import { BottomTabScreenProps } from '@react-navigation/bottom-tabs'
-import { NativeStackScreenProps } from '@react-navigation/native-stack'
+import { CompositeScreenProps, CompositeNavigationProp } from '@react-navigation/native'
+import { BottomTabScreenProps, BottomTabNavigationProp } from '@react-navigation/bottom-tabs'
+import { NativeStackScreenProps, NativeStackNavigationProp } from '@react-navigation/native-stack'
 
 type TabParamList = {
   Home: undefined,
@@ -12,7 +12,7 @@ type TabParamList = {
 
 type StackParamList = {
   Main: undefined,
-  Detail: { id: string }
+  Detail: { id: string, link: string }
 }
 
 type TabScreenProps = CompositeScreenProps<
@@ -27,6 +27,11 @@ type MineScreenProps = CompositeScreenProps<
 
 type DetailScreenProps = NativeStackScreenProps<StackParamList, 'Detail'>
 
+type MovieScreenNavigationProp = CompositeNavigationProp<
+  BottomTabNavigationProp<TabParamList, 'Movie'>,
+  NativeStackNavigationProp<StackParamList>
+>
+
 type ResponseProps = {
   code: number
   msg: string
@@ -37,5 +42,6 @@ export type {
   TabScreenProps,
   DetailScreenProps,
   MineScreenProps,
-  ResponseProps
+  ResponseProps,
+  MovieScreenNavigationProp
 }
