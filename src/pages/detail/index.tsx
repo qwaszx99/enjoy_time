@@ -1,6 +1,6 @@
 import { APP } from 'config'
 import React, { FC, useEffect } from 'react'
-import { Platform, Switch, View } from 'react-native'
+import { Platform, View } from 'react-native'
 import WebView, { WebViewMessageEvent } from 'react-native-webview'
 import { DetailScreenProps } from 'types'
 import Orientation from 'react-native-orientation'
